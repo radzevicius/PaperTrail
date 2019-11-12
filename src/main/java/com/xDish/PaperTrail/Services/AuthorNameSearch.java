@@ -7,9 +7,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.net.URL;
-
 @Getter
 public class AuthorNameSearch {
 
@@ -21,18 +18,15 @@ public class AuthorNameSearch {
   }
 
   public void parseName(int variant, String query) throws Exception {
-    String finalName = "I didn't change";
-    String url = new ApiUrlBuilder().buildUrl(variant, query);
-    Document document =  new GetXml().XmlDocument(url);
+    Document document =  BuildXmlDocument.XmlDocument(ApiUrlBuilder.buildUrl(variant, query));
     NodeList xml = document.getElementsByTagName("author");
-    Node nameOfAuthor = xml.item(2);
+    Node nameOfAuthor = xml.item(0);
     if (nameOfAuthor.getNodeType() == Node.ELEMENT_NODE) {
       Element author = (Element) nameOfAuthor;
       NodeList authorNames = author.getChildNodes();
       Node name = authorNames.item(3);
       Node authorId = authorNames.item(1);
-      finalName = name.getTextContent();
-      this.name = finalName;
+      this.name = name.getTextContent();
       this.id = Integer.parseInt(authorId.getTextContent());
     }
   }

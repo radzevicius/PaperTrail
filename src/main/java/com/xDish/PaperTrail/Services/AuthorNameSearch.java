@@ -12,15 +12,13 @@ import java.net.URL;
 
 public class AuthorNameSearch {
 
-  public static String url = "https://www.goodreads.com/search/index.xml?key=v8zzKlJwTVg7h9uJXCuzpg&q=sanderson&search[field]=author";
-
   public AuthorNameSearch() throws Exception {
   }
 
-  Document document =  new GetXml().XmlDocument(url);
-
-  public String parsedName() throws Exception {
+  public String parseName(int variant, String query) throws Exception {
     String finalName = "I didn't change";
+    String url = new ApiUrlBuilder().buildUrl(variant, query);
+    Document document =  new GetXml().XmlDocument(url);
     NodeList xml = document.getElementsByTagName("author");
     Node nameOfAuthor = xml.item(2);
     if (nameOfAuthor.getNodeType() == Node.ELEMENT_NODE) {

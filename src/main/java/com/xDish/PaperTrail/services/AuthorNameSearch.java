@@ -1,8 +1,8 @@
-package com.xDish.PaperTrail.Services;
+package com.xDish.PaperTrail.services;
 
 
-import com.xDish.PaperTrail.Entities.AuthorOverview;
-import com.xDish.PaperTrail.Entities.BookOverview;
+import com.xDish.PaperTrail.entities.AuthorOverview;
+import com.xDish.PaperTrail.entities.BookOverview;
 import lombok.Getter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -46,14 +46,17 @@ public class AuthorNameSearch {
   private void parseBookData(Element work){
     BookOverview currentBookOverview = new BookOverview();
     currentBookOverview.setRating(work.getElementsByTagName("average_rating").item(0).getTextContent());
+
     Element bookElement =(Element) work.getElementsByTagName("best_book").item(0);
     currentBookOverview.setImageURL(bookElement.getElementsByTagName("image_url").item(0).getTextContent());
     currentBookOverview.setTitle(bookElement.getElementsByTagName("title").item(0).getTextContent());
     currentBookOverview.setId(bookElement.getElementsByTagName("id").item(0).getTextContent());
+
     Element author = (Element) bookElement.getElementsByTagName("author").item(0);
     currentBookOverview.setAuthor(author.getElementsByTagName("name").item(0).getTextContent());
     currentBookOverview.setAuthorID(author.getElementsByTagName("id").item(0).getTextContent());
     checkAuthors(author);
+
     this.books.add(currentBookOverview);
   }
 
@@ -64,6 +67,15 @@ public class AuthorNameSearch {
     for (int i = 0 ; i < listOfWorks.getLength(); i++){
       Node specificWork = listOfWorks.item(i);
       parseBookData((Element)specificWork);
+    }
+  }
+
+  private void testElementBuilder(int variant, String query) throws Exception{
+    Document document =  BuildXmlDocument.XmlDocument(ApiUrlBuilder.buildUrl(variant, query));
+    NodeList listOfWorks = document.getElementsByTagName("work");
+    for (int i = 0 ; i < listOfWorks.getLength(); i++){
+      Node specificWork = listOfWorks.item(i);
+      parseBookData((Element) specificWork);
     }
   }
 

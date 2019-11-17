@@ -1,4 +1,4 @@
-package com.xDish.PaperTrail.Services;
+package com.xDish.PaperTrail.services;
 
 import org.w3c.dom.Document;
 

@@ -1,7 +1,7 @@
-package com.xDish.PaperTrail.Services;
+package com.xDish.PaperTrail.services;
 
-import com.xDish.PaperTrail.Entities.Author;
-import com.xDish.PaperTrail.Entities.Book;
+import com.xDish.PaperTrail.entities.Author;
+import com.xDish.PaperTrail.entities.Book;
 import lombok.Getter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

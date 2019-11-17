@@ -1,6 +1,5 @@
-package com.xDish.PaperTrail.Entities;
+package com.xDish.PaperTrail.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 

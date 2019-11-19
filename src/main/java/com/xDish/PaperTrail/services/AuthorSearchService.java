@@ -1,6 +1,6 @@
 package com.xDish.PaperTrail.services;
 
-import com.xDish.PaperTrail.entities.AuthorBookModel;
+import com.xDish.PaperTrail.entities.AuthorBookOverviewModel;
 import com.xDish.PaperTrail.entities.AuthorOverview;
 import com.xDish.PaperTrail.entities.BookOverview;
 import org.springframework.stereotype.Service;
@@ -9,23 +9,21 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.util.List;
-
 @Service
-public class AuthorService {
+public class AuthorSearchService {
 
-    public AuthorBookModel getAuthorBookData(int variant, String query) throws Exception {
+    public AuthorBookOverviewModel getAuthorBookOverviewData(int variant, String query) throws Exception {
         Document document = BuildXmlDocument.XmlDocument(ApiUrlBuilder.buildUrl(variant, query));
         NodeList listOfWorks = document.getElementsByTagName("work");
-        AuthorBookModel authorBookModel = new AuthorBookModel();
+        AuthorBookOverviewModel authorBookOverviewModel = new AuthorBookOverviewModel();
         for (int i = 0; i < listOfWorks.getLength(); i++) {
             Node specificWork = listOfWorks.item(i);
             BookOverview book = parseBookData((Element) specificWork);
             AuthorOverview author = parseAuthorData((Element) specificWork);
-            authorBookModel.addAuthor(author);
-            authorBookModel.addBook(book);
+            authorBookOverviewModel.addAuthorOverview(author);
+            authorBookOverviewModel.addBookOverview(book);
         }
-        return authorBookModel;
+        return authorBookOverviewModel;
     }
 
     private AuthorOverview parseAuthorData(Element work) {

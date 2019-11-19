@@ -13,14 +13,12 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class AuthorBookModel {
-    private Set<AuthorOverview> authors = new HashSet<>();
-    private List<BookOverview> books = new ArrayList<>();
+    private Set<Author> authors = new HashSet<>();
+    private List<Book> books = new ArrayList<>();
 
-    public void addAuthor(AuthorOverview authorOverview) {
-        this.authors.add(authorOverview);
-    }
+    public void addAuthor(Author author){this.authors.add(author); }
 
-    public void addBook(BookOverview bookOverview) {
-        this.books.add(bookOverview);
-    }
+    public void addBook(Book book){this.books.add(book); }
+
 }
+

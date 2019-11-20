@@ -11,8 +11,11 @@ public class ApiUrlBuilder {
             case 2:
                 urlFragment = "https://www.goodreads.com/author/show.xml?key=v8zzKlJwTVg7h9uJXCuzpg&id=";
                 break;
+            case 3:
+                urlFragment = "https://www.goodreads.com/series/list?format=xml&key=v8zzKlJwTVg7h9uJXCuzpg&id=";
+                break;
             default:
-                urlFragment = "https://www.goodreads.com/search/index.xml?key=v8zzKlJwTVg7h9uJXCuzpg&search[field]=autheeor&q=";
+                urlFragment = "SOMETHINGS WRONG";
                 break;
         }
         return urlFragment;

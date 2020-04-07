@@ -8,14 +8,12 @@ import com.xDish.PaperTrail.services.AuthorIdSearchService;
 import com.xDish.PaperTrail.services.AuthorIdSeriesSearchService;
 import com.xDish.PaperTrail.services.AuthorSearchService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@CrossOrigin("http://192.168.1.248:3000")
 public class SearchController {
 
     private final AuthorSearchService authorService;
